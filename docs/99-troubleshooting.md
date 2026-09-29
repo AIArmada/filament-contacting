@@ -70,7 +70,7 @@ Snapshots are always read-only (`read_only: true`).
 
 ## Cross-Tenant Records Visible
 
-If your app uses owner scoping from `commerce-support` and standalone resources are enabled, ensure the resource query applies owner scoping. The resource uses `parent::getEloquentQuery()` which respects the core model's global scope.
+If your app uses owner scoping from `commerce-support` and standalone resources are enabled, ensure the resource query applies owner scoping. The resources wrap `parent::getEloquentQuery()` with `OwnerUiScope::apply(..., includeGlobal: false)`, which respects the core model's global scope and excludes global rows.
 
 ## Import Failing
 
@@ -82,4 +82,4 @@ of updating them because imports are insert-only.
 
 ## Filament Method Signature Mismatch
 
-If you see method signature errors, check that your installed Filament version matches `^5.8.1`. The components in this package use Filament v5 APIs.
+If you see method signature errors, check that your installed Filament version matches `^5.0`. The components in this package use Filament v5 APIs.
